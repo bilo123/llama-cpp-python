@@ -1,7 +1,7 @@
 FROM python:3.10-slim
 
-# تثبيت المتطلبات الأساسية
-RUN apt-get update && apt-get install -y git build-essential cmake && \
+# تثبيت curl والمتطلبات الأساسية
+RUN apt-get update && apt-get install -y git build-essential cmake curl && \
     pip install --no-cache-dir llama-cpp-python flask
 
 # إنشاء مجلد العمل
@@ -10,7 +10,7 @@ WORKDIR /app
 # نسخ ملفات المشروع
 COPY . .
 
-# تحميل النموذج (مثلاً tinyllama Q4)
+# تحميل النموذج TinyLlama بصيغة GGUF Q4_0
 RUN mkdir -p /models && curl -L -o /models/model.gguf https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-GGUF/resolve/main/tinyllama-1.1b-chat.Q4_0.gguf
 
 # بدء التطبيق

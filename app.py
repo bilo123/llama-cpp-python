@@ -9,7 +9,7 @@ app = Flask(__name__)
 def generate():
     data = request.get_json()
     prompt = data.get("prompt", "")
-    output = llm(prompt, max_tokens=100)
+    output = llm(prompt, max_tokens=10)
     return jsonify({"response": output["choices"][0]["text"]})
 
 if __name__ == "__main__":

@@ -1,7 +1,11 @@
 from flask import Flask, request, jsonify
 from llama_cpp import Llama
 
-llm = Llama(model_path="/models/model.gguf", n_ctx=512)
+llm = Llama(
+    model_path="/models/model.gguf",
+    n_ctx=256,
+    n_threads=2
+)
 
 app = Flask(__name__)
 
@@ -9,7 +13,7 @@ app = Flask(__name__)
 def generate():
     data = request.get_json()
     prompt = data.get("prompt", "")
-    output = llm(prompt, max_tokens=5)
+    output = llm(prompt, max_tokens=10)
     return jsonify({"response": output["choices"][0]["text"]})
 
 if __name__ == "__main__":

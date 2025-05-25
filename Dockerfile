@@ -11,7 +11,7 @@ WORKDIR /app
 COPY . .
 
 # تحميل النموذج TinyLlama بصيغة GGUF Q4_0
-RUN mkdir -p /models && curl -L -o /models/model.gguf https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q2_K.gguf
+RUN mkdir -p /models && curl -L -o /models/model.gguf https://huggingface.co/QuantFactory/Llama-3.2-3B-GGUF/resolve/main/Llama-3.2-3B.Q2_K.gguf
 
 # بدء التطبيق
 CMD ["python", "app.py"]
